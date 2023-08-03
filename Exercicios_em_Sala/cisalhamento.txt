@@ -1,0 +1,41 @@
+Para construir visualmente o cisalhamento usando a linguagem de programação C para a GPU da Apple, você pode utilizar o framework Metal, que é uma API de gráficos de baixo nível desenvolvida pela Apple para iOS e macOS. O Metal permite o acesso direto à GPU, permitindo uma renderização rápida e eficiente de gráficos e efeitos complexos, como o cisalhamento.
+
+Aqui está um exemplo básico de como construir visualmente o cisalhamento usando Metal na linguagem C:
+
+1. Configure o projeto:
+Certifique-se de que você tenha um projeto Metal criado no Xcode para iOS ou macOS. Adicione um shader vertex e fragment no projeto para realizar o cisalhamento.
+
+2. Implemente o código em C:
+Aqui, vamos supor que você já tenha um vértice de entrada que descreve o objeto ou a imagem a ser cisalhada. O código abaixo irá aplicar o cisalhamento na direção x:
+
+```c
+#include <Metal/Metal.h>
+#include <QuartzCore/CAMetalLayer.h>
+
+// Função para aplicar o cisalhamento
+void applyShearing(vector_float4 *vertices, int numVertices, float shearAmount) {
+    for (int i = 0; i < numVertices; i++) {
+        float x = vertices[i].x;
+        float y = vertices[i].y;
+        float z = vertices[i].z;
+        float w = vertices[i].w;
+
+        // Aplicar o cisalhamento apenas na direção x (pode ser ajustado para y ou z também)
+        x += y * shearAmount;
+
+        vertices[i] = (vector_float4){ x, y, z, w };
+    }
+}
+```
+
+3. Chame a função de cisalhamento no seu renderizador:
+```c
+// Supondo que você já tenha configurado o pipeline, buffer, etc.
+// ...
+// Aplicar o cisalhamento antes de renderizar
+applyShearing(vertices, numVertices, shearAmount);
+```
+
+Lembre-se de ajustar os parâmetros de acordo com suas necessidades. A variável `shearAmount` controla o quão intensamente o cisalhamento é aplicado.
+
+Este é apenas um exemplo básico de como aplicar o cisalhamento usando Metal em C. Para projetos mais complexos e realistas, você pode precisar de shaders mais avançados e cálculos matemáticos adicionais. O Metal oferece muitas opções para personalizar o pipeline de renderização de acordo com suas necessidades específicas.

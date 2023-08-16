@@ -36,7 +36,7 @@ void drawLineDDA(Point start, Point end) {
         x += xIncrement;
         y += yIncrement;
     }
-
+    printf("(%f, %f)\n", x, y);//Para gerar o último ponto
     // Passo 6: Rasterização completa
     printf("Rasterização completa.\n");
 }

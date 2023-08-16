@@ -1,0 +1,37 @@
+# **Aplicativo de Transformações Geométricas com Interface Gráfica usando Tkinter e Matplotlib**
+
+## Introdução
+
+Este artigo explora um exemplo prático de um aplicativo que demonstra transformações geométricas em um plano 2D. O aplicativo utiliza a biblioteca Tkinter para criar uma interface gráfica simples e a biblioteca Matplotlib para visualizar as transformações aplicadas em um gráfico de dispersão.
+
+## Pré-requisitos
+
+Para entender este artigo, é útil ter conhecimento básico de programação em Python, incluindo o uso de classes e funções, bem como o entendimento de coordenadas em um plano 2D e transformações geométricas como rotação, translação, escala e cisalhamento.
+
+## Bibliotecas Utilizadas
+
+1. **Tkinter**: Uma biblioteca padrão do Python para criar interfaces gráficas.
+2. **Matplotlib**: Uma biblioteca amplamente usada para visualização de dados, incluindo gráficos e plots.
+
+## Criação da Interface Gráfica
+
+A classe `TransformationsApp` é definida para criar a interface gráfica do aplicativo. Ela contém widgets como labels, campos de entrada e um botão que permitem ao usuário especificar os parâmetros das transformações.
+
+## Função `apply_transformations`
+
+A função `apply_transformations` é chamada quando o botão "Aplicar Transformações" é clicado. Ela recupera os valores inseridos nos campos de entrada para os ângulos de rotação, componentes de translação, fatores de escala e fatores de cisalhamento. Em seguida, realiza as seguintes etapas:
+
+1. Calcula os pontos após cada transformação (rotação, translação, escala e cisalhamento) utilizando fórmulas matemáticas apropriadas.
+2. Imprime os resultados no console, exibindo os pontos transformados em cada etapa.
+
+## Visualização Gráfica
+
+Para fornecer uma visualização gráfica das transformações, a biblioteca Matplotlib é utilizada para criar um gráfico de dispersão. Cada ponto transformado é plotado como um ponto colorido no gráfico. O gráfico é configurado com rótulos nos eixos, título e uma legenda para identificar cada ponto transformado.
+
+## Fluxo Principal do Programa
+
+O código verifica se o script está sendo executado como o programa principal (`__name__ == "__main__"`). Se for o caso, ele inicializa uma janela Tkinter e cria uma instância da classe `TransformationsApp`, iniciando assim a interface gráfica. O loop principal da interface é mantido pela chamada a `root.mainloop()`.
+
+## Conclusão
+
+Este artigo apresentou um exemplo prático de como criar um aplicativo de transformações geométricas com uma interface gráfica usando as bibliotecas Tkinter e Matplotlib em Python. O aplicativo permite aos usuários inserir parâmetros de transformações, calcular os pontos transformados e visualizar os resultados em um gráfico de dispersão. Isso serve como um bom ponto de partida para entender melhor as capacidades dessas bibliotecas e a aplicação de conceitos de geometria computacional em Python.

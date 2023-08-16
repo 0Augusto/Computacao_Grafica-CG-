@@ -1,0 +1,131 @@
+Documentação Detalhada:
+
+Compilação e Execução:
+
+Para compilar o código, você pode usar um compilador C como o GCC. Os comandos para compilação e execução podem variar com o sistema operacional:
+Linux / macOS (Terminal):
+bash
+Copy code
+gcc TrabalhoUm.c -o Trabalho -lm
+./Trabalho
+Windows (Prompt de Comando):
+cmd
+Copy code
+gcc TrabalhoUm.c -o Trabalho
+Trabalho
+Interface de Usuário:
+
+O programa solicitará que o usuário insira vários parâmetros:
+Ângulo de Rotação: Insira o ângulo de rotação em graus.
+Componentes de Translação (dx e dy): Insira os componentes x e y da translação.
+Fatores de Escala (sx e sy): Insira os fatores de escala em x e y.
+Fatores de Cisalhamento (shx e shy): Insira os fatores de cisalhamento em x e y.
+Transformações Aplicadas:
+
+O programa realiza as seguintes transformações no ponto original (1.0, 1.0) com base nos parâmetros inseridos:
+Rotação: O ponto é rotacionado em torno da origem pelo ângulo especificado.
+Translação: O ponto rotacionado é então transladado pelos componentes dx e dy.
+Escala: O ponto transladado é escalado pelos fatores de escala especificados em x e y.
+Cisalhamento: Finalmente, o ponto escalado é submetido a um cisalhamento utilizando os fatores de cisalhamento em x e y.
+Gráficos:
+
+O programa utiliza o gnuplot para exibir os gráficos das transformações realizadas.
+Cada gráfico é mostrado lado a lado em uma matriz 1x4 de gráficos.
+Cada gráfico representa um estágio da transformação (original, rotacionado, transladado, escalado e cisalhado).
+Lembre-se de que você deve ter o gnuplot instalado no seu sistema para executar esse código. Certifique-se de seguir as instruções de compilação apropriadas para o seu sistema operacional.
+
+# DOCUMENTAÇÃO CÓDIGO C# PARA MACBOOK AIR M1
+Para compilar e executar o código C# no MacBook Air, você precisará usar o Mono, que é uma implementação open-source do framework .NET que permite que você desenvolva e execute aplicativos C# em sistemas não-Windows, como macOS. O Mono inclui o compilador C# (mcs) e o tempo de execução necessário para rodar os programas. Siga estas etapas para compilar e executar o código C# no seu MacBook Air:
+
+Instale o Mono:
+
+Verifique se o Mono está instalado no seu sistema. Se não estiver, você pode instalá-lo com o gerenciador de pacotes brew. Abra o Terminal e execute o seguinte comando para instalar o Mono:
+
+bash
+Copy code
+brew install mono
+Este comando instalará o Mono Framework no seu MacBook Air.
+
+Crie e Compile o Código:
+
+Use um editor de código (como Visual Studio Code) ou um ambiente de desenvolvimento integrado (IDE) que suporte C# (como Visual Studio para Mac) para escrever o seu código.
+
+Compile o Código:
+
+Abra o Terminal, navegue até a pasta onde você salvou o seu arquivo .cs (o código C#) e compile-o usando o compilador mcs do Mono. Por exemplo, se o nome do seu arquivo for MeuPrograma.cs, você pode usar o seguinte comando para compilar:
+
+bash
+Copy code
+mcs MeuPrograma.cs
+Isto irá gerar um executável com o nome MeuPrograma.exe (mesmo que estejamos no macOS, a extensão será .exe).
+
+Executar o Programa:
+
+Agora você pode executar o programa C# que foi compilado. No Terminal, digite o seguinte comando:
+
+bash
+Copy code
+mono MeuPrograma.exe
+Substitua MeuPrograma.exe pelo nome do arquivo gerado na etapa anterior.
+
+# DOCUMENTAÇÃO CÓDIGO C# PARA WINDOWS
+
+Para compilar e executar o código C# no Windows, você pode usar o Visual Studio, uma IDE (Integrated Development Environment) altamente popular para desenvolvimento .NET, que inclui um compilador C# integrado e fornece uma interface fácil de usar para criar, compilar e executar seus programas. Siga estas etapas para compilar e executar o código C# no Windows:
+
+1. **Instale o Visual Studio:**
+
+   Baixe e instale o Visual Studio a partir do site oficial da Microsoft: [Visual Studio](https://visualstudio.microsoft.com/).
+
+   Certifique-se de selecionar o suporte para desenvolvimento C# durante a instalação.
+
+2. **Crie um Novo Projeto:**
+
+   Abra o Visual Studio e crie um novo projeto C#:
+
+   - Selecione "File" (Arquivo) -> "New" (Novo) -> "Project" (Projeto).
+   - Escolha "Visual C#" na categoria à esquerda.
+   - Escolha o tipo de projeto que deseja criar (por exemplo, "Console App" para um aplicativo de console simples).
+
+3. **Escreva o Código:**
+
+   Na janela de edição de código que é aberta, escreva o seu código C#.
+
+4. **Compile e Execute o Código:**
+
+   Pressione o botão "Start" (Iniciar) no Visual Studio ou use a combinação de teclas "Ctrl+F5" para compilar e executar o seu programa.
+
+5. **Verifique a Saída:**
+
+   A saída do programa será exibida na janela de saída no Visual Studio.
+
+Para programas C# mais simples, como um aplicativo de console, o Visual Studio é uma excelente escolha. No entanto, para cenários mais complexos, você pode precisar configurar projetos mais estruturados e gerenciar dependências com mais cuidado usando o gerenciador de pacotes NuGet.
+
+Lembre-se de que esta é uma abordagem geral e que pode variar dependendo da versão específica do Visual Studio que você está usando, bem como do tipo de projeto que está desenvolvendo. Certifique-se de adaptar as etapas conforme necessário com base na sua configuração específica do Visual Studio.
+
+#ERROS 
+
+O erro "fatal error: 'SDL2/SDL.h' file not found" indica que o pré-processador não conseguiu encontrar o arquivo de cabeçalho "SDL.h" da biblioteca SDL2. Isso pode acontecer se a biblioteca SDL2 não estiver instalada no sistema ou se o compilador não estiver configurado para encontrar os cabeçalhos e as bibliotecas.
+
+Para corrigir isso, você precisa garantir que a biblioteca SDL2 esteja instalada no seu sistema e que o compilador saiba onde encontrar os arquivos de cabeçalho e bibliotecas da SDL2.
+
+Aqui estão algumas etapas que você pode seguir para resolver o problema:
+
+1. **Instale a biblioteca SDL2:** Certifique-se de ter a biblioteca SDL2 instalada no seu sistema. Dependendo do sistema operacional que você está usando, a instalação pode variar. No Linux, você pode usar o gerenciador de pacotes, por exemplo, no Ubuntu:
+
+   ```
+   sudo apt-get install libsdl2-dev
+   ```
+
+   No macOS, você pode usar o Homebrew:
+
+   ```
+   brew install sdl2
+   ```
+
+   No Windows, você precisará baixar os binários SDL2 e configurar o compilador para encontrar os cabeçalhos e as bibliotecas. Certifique-se de seguir as instruções adequadas para a instalação no seu sistema.
+
+2. **Configurar o compilador:** Certifique-se de que o compilador esteja configurado para encontrar os cabeçalhos e bibliotecas da SDL2. Isso envolve informar ao compilador onde encontrar os arquivos necessários.
+
+3. **Verifique o caminho dos cabeçalhos:** Se a biblioteca SDL2 estiver instalada, mas o compilador não estiver encontrando os cabeçalhos, verifique o caminho onde os cabeçalhos estão localizados. Em alguns sistemas, pode ser necessário especificar um caminho adicional usando a opção `-I` do compilador.
+
+Se você puder fornecer mais informações sobre o seu sistema operacional e ambiente de desenvolvimento, poderei fornecer instruções mais detalhadas para corrigir esse problema.

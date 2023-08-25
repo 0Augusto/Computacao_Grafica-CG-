@@ -87,6 +87,42 @@ class TransformationsApp:
 
         # Exibir o gráfico
         plt.show()
+    def on_canvas_click(self, event):
+        x = event.x
+        y = event.y
+        self.points.append((x, y))
+        self.canvas.create_oval(x - 1, y - 1, x + 1, y + 1, fill="black")
+
+        # Desenhar a linha usando o algoritmo DDA
+        if len(self.points) == 2:
+            x1, y1 = self.points[0]
+            x2, y2 = self.points[1]
+            line_points = self.dda_line(x1, y1, x2, y2)
+            for point in line_points:
+                self.canvas.create_oval(point[0], point[1], point[0], point[1], fill="blue")
+
+    def dda_line(self, x1, y1, x2, y2):
+        points = []
+        dx = x2 - x1
+        dy = y2 - y1
+        steps = abs(dx) if abs(dx) > abs(dy) else abs(dy)
+        x_increment = dx / steps
+        y_increment = dy / steps
+
+        x = x1
+        y = y1
+
+        for _ in range(steps + 1):
+            points.append((int(round(x)), int(round(y))))
+            x += x_increment
+            y += y_increment
+
+        return points
+
+    def apply_transformations(self):
+        # Resto da função apply_transformations
+         pass
+        
 
 if __name__ == "__main__":
     root = tk.Tk()

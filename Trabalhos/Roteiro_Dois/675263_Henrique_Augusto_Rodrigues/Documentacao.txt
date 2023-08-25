@@ -1,0 +1,46 @@
+Autor: Henrique Augusto Rodrigues
+Data: 17/08/2023
+
+Requisitos: Este programa requer as bibliotecas Tkinter e Matplotlib instaladas.
+Certifique-se de que elas estão disponíveis no seu ambiente Python.
+
+Você encontrará o executável na pasta "dist" no diretório onde você executou o comando. O executável terá o mesmo nome do arquivo Python que você usou como entrada.
+
+TransformationsApp - Aplicativo de Transformações Geométricas
+
+Este programa implementa um aplicativo gráfico que permite aos usuários
+capturar pontos em um canvas e, a cada par de pontos capturados, desenha
+uma reta entre eles usando o algoritmo DDA (Digital Differential Analyzer).
+
+Compilação e Execução:
+
+1. Certifique-se de que você possui o Python instalado em seu sistema.
+2. Abra um terminal ou prompt de comando.
+3. Navegue para o diretório onde o arquivo com o código fonte está localizado.
+
+Compilação e Execução no MacBook Air (macOS):
+
+1. No terminal, digite o seguinte comando para executar o programa:
+   python3 main.py
+2. A janela do aplicativo será aberta. Você pode capturar pontos clicando no canvas.
+3. A cada par de pontos capturados, uma reta será desenhada entre eles.
+
+Compilação e Execução no Linux:
+
+1. No terminal, digite o seguinte comando para executar o programa:
+   python3 main.py
+2. A janela do aplicativo será aberta. Você pode capturar pontos clicando no canvas.
+3. A cada par de pontos capturados, uma reta será desenhada entre eles.
+
+Compilação e Execução no Windows:
+
+1. Abra o Prompt de Comando.
+2. Navegue para o diretório onde o arquivo com o código fonte está localizado.
+3. Digite o seguinte comando para executar o programa:
+   python main.py
+4. A janela do aplicativo será aberta. Você pode capturar pontos clicando no canvas.
+5. A cada par de pontos capturados, uma reta será desenhada entre eles.
+
+
+Requisitos: Este programa requer as bibliotecas Tkinter e Matplotlib instaladas.
+Certifique-se de que elas estão disponíveis no seu ambiente Python.

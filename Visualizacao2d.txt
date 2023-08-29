@@ -6,7 +6,7 @@ Disciplina: Computação Gráfica
     
     Além disso, é preciso delimitar o que será chamado de 'Recorde 2d'. Deve-se identificar os dados inicial e final para amplificação dos algoritmos de rasterização.
     Não se pode atualizar os dados do objeto de modo permanente após o recorte,visto que a câmera será reposicionada e os valores originais serão necessários para os novos cálculos de recorte.
-    
+   Mas, de forma momentânea, os novos dados se tornar os valores inicial e final para o pós-processamento (até ser finalizado), depois os dados originais voltam a ser referência. 
 
     Em relação ao subconjunto a ser visualizado, fala-se que ele se encontra dentro da 'janela de visualização' e esses valores precisam ser transformados para a área estabelecida para o 'visor'(transformação janela-visor).
     Por fim, as coordenadas são normalizadas para serem enviadas para o dispositivo físico.

@@ -4,11 +4,11 @@
 float clip(float p, float q, float *t1, float *t2) {
     float r;
     if (p < 0) {
-        r = q / (q - p);
+        r = q/p;
         if (r > *t1) *t1 = r;
         if (r > *t2) return 0; // A linha está completamente fora
     } else if (p > 0) {
-        r = q / (q - p);
+        r = q/p;
         if (r < *t2) *t2 = r;
         if (r < *t1) return 0; // A linha está completamente fora
     } else {

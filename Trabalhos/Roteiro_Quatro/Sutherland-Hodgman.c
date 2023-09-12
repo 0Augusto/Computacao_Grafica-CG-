@@ -1,73 +1,72 @@
 #include <stdio.h>
 
 typedef struct {
-    float x, y = 0.0;
+    float x, y;
 } Point;
 
-// Função para verificar se um ponto está à esquerda de uma linha definida por dois pontos
-int isLeft(Point a, Point b, Point c) {
-    return ((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) > 0;
-}
+// Função para calcular o valor de t (parâmetro de interseção) usando o algoritmo de Liang-Barsky
+int liangBarsky(Point p1, Point p2, float *t1, float *t2, float xmin, float xmax, float ymin, float ymax) {
+    float dx = p2.x - p1.x;
+    float dy = p2.y - p1.y;
+    float p[4], q[4];
+    float tEnter = 0, tExit = 1;
 
-// Algoritmo de Sutherland-Hodgman para recorte de polígonos
-void sutherlandHodgman(Point polygon[], int n, Point clip[], int m) {
-    Point output[100]; // Suponha que o tamanho máximo do polígono de saída seja 100
-    int outputSize = 0;
+    p[0] = -dx;
+    q[0] = p1.x - xmin;
+    p[1] = dx;
+    q[1] = xmax - p1.x;
+    p[2] = -dy;
+    q[2] = p1.y - ymin;
+    p[3] = dy;
+    q[3] = ymax - p1.y;
 
-    for (int i = 0; i < m; i++) {
-        Point edgeStart = clip[i];
-        Point edgeEnd = clip[(i + 1) % m];
+    for (int i = 0; i < 4; i++) {
+        if (p[i] == 0 && q[i] < 0) {
+            return 0; // O segmento de reta está fora da janela de recorte
+        }
 
-        for (int j = 0; j < n; j++) {
-            Point current = polygon[j];
-            Point next = polygon[(j + 1) % n];
-
-            if (isLeft(edgeStart, edgeEnd, current)) {
-                if (!isLeft(edgeStart, edgeEnd, next)) {
-                    // Calcula o ponto de interseção e adiciona-o ao polígono de saída
-                    float dx = next.x - current.x;
-                    float dy = next.y - current.y;
-                    float t = ((edgeStart.x - current.x) * dx + (edgeStart.y - current.y) * dy) / (dx * dx + dy * dy);
-                    Point intersection = {current.x + t * dx, current.y + t * dy};
-                    output[outputSize++] = intersection;
+        if (p[i] != 0) {
+            float r = q[i] / p[i];
+            if (p[i] < 0) {
+                if (r > tExit) {
+                    return 0; // O segmento de reta está fora da janela de recorte
+                } else if (r > tEnter) {
+                    tEnter = r;
                 }
-                output[outputSize++] = next;
-            } else if (isLeft(edgeStart, edgeEnd, next)) {
-                // Calcula o ponto de interseção e adiciona-o ao polígono de saída
-                float dx = next.x - current.x;
-                float dy = next.y - current.y;
-                float t = ((edgeStart.x - current.x) * dx + (edgeStart.y - current.y) * dy) / (dx * dx + dy * dy);
-                Point intersection = {current.x + t * dx, current.y + t * dy};
-                output[outputSize++] = intersection;
+            } else {
+                if (r < tEnter) {
+                    return 0; // O segmento de reta está fora da janela de recorte
+                } else if (r < tExit) {
+                    tExit = r;
+                }
             }
         }
-
-        // Atualiza o polígono de entrada com o polígono de saída
-        n = outputSize;
-        for (int k = 0; k < outputSize; k++) {
-            polygon[k] = output[k];
-        }
-        outputSize = 0;
     }
 
-    // A saída final é armazenada em 'polygon'
-    printf("Polígono recortado:\n");
-    for (int i = 0; i < n; i++) {
-        printf("(%.2f, %.2f)\n", polygon[i].x, polygon[i].y);
+    if (tEnter < tExit) {
+        *t1 = tEnter;
+        *t2 = tExit;
+        return 1; // O segmento de reta está dentro da janela de recorte
     }
+
+    return 0; // O segmento de reta está fora da janela de recorte
 }
 
 int main() {
-    // Defina o polígono de entrada (n vértices) e a janela de recorte (m vértices)
-    Point polygon[] = {{0, 0}, {2, 4}, {4, 0}, {2, -2}};
-    int n = sizeof(polygon) / sizeof(polygon[0]);
+    Point p1 = {1, 1};
+    Point p2 = {5, 5};
+    float t1, t2;
 
-    Point clip[] = {{1, 1}, {3, 1}, {3, -1}, {1, -1}};
-    int m = sizeof(clip) / sizeof(clip[0]);
+    float xmin = 2, xmax = 4, ymin = 2, ymax = 4;
 
-    // Chame o algoritmo de recorte
-    sutherlandHodgman(polygon, n, clip, m);
+    if (liangBarsky(p1, p2, &t1, &t2, xmin, xmax, ymin, ymax)) {
+        // O segmento de reta está dentro da janela de recorte
+        printf("Segmento de reta recortado:\n");
+        printf("P1(%.2f, %.2f) -> P2(%.2f, %.2f)\n", p1.x + t1 * (p2.x - p1.x), p1.y + t1 * (p2.y - p1.y),
+               p1.x + t2 * (p2.x - p1.x), p1.y + t2 * (p2.y - p1.y));
+    } else {
+        printf("O segmento de reta está fora da janela de recorte.\n");
+    }
 
     return 0;
 }
-

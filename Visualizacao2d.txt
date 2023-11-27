@@ -22,3 +22,81 @@ Disciplina: Computação Gráfica
 2) Recorte 2D:
     Os algoritmos que delimitam qual será o novo segmento de reta a ser visualizado calculam os novos pontos inicial e final. Será considerado valor/ponto a ser visualizado aquele que estiver na intersecção com uma das laterais/ponteiras da janela de visualização ou internos a todas elas.
 (imagem) 
+
+
+
+
+10/10/2023
+Antialiasing: Conversão de valores contínuos para discretos podem gerar distorções (aliasing) dependendo da frequência de amostragem  ou baixa amostragem (undersampling).
+	Os métodos de antialiasing reduzem essas distorções com atribuição de valores/cores aproximadas.
+
+Exemplo de distorções:
+
+A) Serrilhado 
+(imagem)
+
+B) Perda de Detalhes
+(imagem)
+
+Métodos de Antialiasing: 1 - Superamostragem (pós-filtragem)
+			 2 - Amostragem por áreas (pré-filtragem)
+			 3 - Aplicação de "Máscaras" (distribuição de peso)
+			 4 - Pixel phasing (dependente de hardware)
+
+1 - A intensidade do pixel é calculada em uma resolução mais alta (grid menor) e visualizado em uma resolução mais baixa (grid maior).
+	
+	Cada pixel é representado na estrutura de dados por uma matriz de "Subpixels". A dimensão da matriz representará o nível de variação de cor atribuída ao pixel posteriormente, sendo proporcional a dimensão da matriz e o intervalo (variação) de cores possíveis.
+Exemplo:
+(Imagem)
+	Como é sobreposto em menos de 50% da área, nos métodos de rasterização, ele não seria "setado" (decisão binária "seta" ou "não seta"). No caso de superamostragem, tem-se.
+(Imagem)
+	Pode-se optar por sobreposição >= 50% da área ou simplesmente se foi sobreposto.
+	Conta-se quanto "subpixels" do total sobreposto: 3/9 = 0.33 e utiliza esse fator para calcular a cor a ser atribuída ao pixel, ou seja, 33% (para cor realiza média profunda) de cinza ao invés de branco (fundo). 
+Em relação aos outros métodos:
+Vantagens: Fácil de implementar, mais popular.
+Desvantagens: força bruta, maior processamento e uso de memória.
+
+2 - A intensidade do pixel é calculada pelo tamanho da área do pixel que é interceptada (sobreposta) pelo objeto.
+Exemplo:
+(imagem)
+
+17/10/2016
+Visualização 3D
+Projeção: Paralela (raios paralelos entre si) 90 graus em relação ao plano de projeção ou de visualização --> Ortogonal != 90 graus --> oblíqua (usa Pitágoras, pois, depende do ângulo)
+	  Perspectiva: convergência dos raios para um ou mais ponto cálculo envolve uma relação de x/y que, depende da distancia da câmera e do centro de projeção
+
+Objetos 3D: Representações
+	Existem objetos mais elaborados que requerem a sua divisão em partes. De acordo com cada estrutura e com as informações iniciais fornecidas. Eles podem ser representados/gerados utilizando uma das seguintes abordagens:
+	- Representações Gerais: estrutura iniciais mais fáceis de serem representadas + operações booleanos e funções aplicadas para geração do objeto final (ou parte dele);
+	- Curvas/Superfícies paramétricas: com base em restrições, equações paramétricas são deduzidas para representar a superfície de um objeto;
+	- Malhas Poligonais: Com base em um número de pontos, são formados polígonos. Esses podem ser de de diferentes tipos e tamanhos;
+	- Superfícies Implícitas: São indicadas funções iniciais utilizadas para, gerar outras funções com base em funções lineares. F --> g
+
+Voxels = elemento volumétrico
+
+
+24/10/2024
+
+3) Curvas Paramétricas: Tipos (3.1 Interpolação; 3.2 Aproximação{Hermite, Bezier, B. Spline, NURBS})
+
+3.2 - Os quatro pontos de controle são informados, mas nem todos precisam satisfazer a equação polinomial que definirá a curva.
+
+A) Curva de Hernite: Apenas os pontos inicial e final são interpolados, os outros dois terão uma aproximação. Nesta modelagem matemática, utiliza-se como condição de controle as derivadas de primeira ordem nos pontos inicial e final. Esses valores das derivadas devem ser conhecidos e informados para utilização da curva.
+	Dessa forma, tem-se a equação a seguir que contempla as condições de controle.
+(Imagem)
+
+E a equação matricial que representa o sistema. 
+(Imagem)
+
+
+
+
+
+
+
+
+
+
+
+
+
